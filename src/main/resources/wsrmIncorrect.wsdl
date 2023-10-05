@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="org.ws.rm.WsrmHelloService" targetNamespace="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm" elementFormDefault="unqualified" targetNamespace="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm" version="1.0">
+
+      <xs:element name="sayHello" type="tns:sayHello"/>
+
+      <xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
+
+      <xs:complexType name="sayHello">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="sayHelloResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:sayHello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part element="tns:sayHelloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WsrmHelloService">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello" wsam:Action="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm/WsrmHelloService/sayHelloRequest" wsaw:Action="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm/WsrmHelloService/sayHelloRequest">
+      </wsdl:input>
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse" wsam:Action="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm/WsrmHelloService/sayHelloResponse" wsaw:Action="https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm/WsrmHelloService/sayHelloResponse">
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="org.ws.rm.WsrmHelloServiceSoapBinding" type="tns:WsrmHelloService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <UsingAddressing xmlns:ns2="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2006/05/addressing/wsdl" ns2:required="true"/>
+    <wsp:PolicyReference URI="#org.ws.rm.WsrmHelloServiceSoapBinding_WSAM_Addressing_Policy"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="org.ws.rm.WsrmHelloService">
+    <wsdl:port binding="tns:org.ws.rm.WsrmHelloServiceSoapBinding" name="WsrmHelloServicePort">
+      <soap:address location="https://nowhere:8080/cxf/WsrmHelloServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsp:Policy xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="org.ws.rm.WsrmHelloServiceSoapBinding_WSAM_Addressing_Policy"><wsam:Addressing><wsp:Policy/></wsam:Addressing></wsp:Policy>
+</wsdl:definitions>
