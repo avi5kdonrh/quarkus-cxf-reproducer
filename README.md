@@ -6,10 +6,10 @@ WSDL URL: https://nowhere:8080/cxf/WsrmHelloServicePort
 
 Override:
 
-BindingProvider bindingProvider = (BindingProvider) proxy;
-bindingProvider.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,"http://localhost:8081/cxf/WsrmHelloServicePort");
+`BindingProvider bindingProvider = (BindingProvider) proxy;
+bindingProvider.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,"http://localhost:8081/cxf/WsrmHelloServicePort");`
 
 ERROR:
 
-Caused by: java.net.UnknownHostException: UnknownHostException invoking https://nowhere:8080/cxf/WsrmHelloServicePort: null
+`Caused by: java.net.UnknownHostException: UnknownHostException invoking https://nowhere:8080/cxf/WsrmHelloServicePort: null`
 
