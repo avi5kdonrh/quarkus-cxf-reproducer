@@ -6,7 +6,7 @@ import jakarta.xml.ws.soap.Addressing;
 
 import org.apache.cxf.interceptor.InInterceptors;
 
-@WebService(targetNamespace = "https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm")
+@WebService(targetNamespace = "https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm", serviceName = "org.ws.rm.WsrmHelloService")
 @Addressing(required = true)
 @InInterceptors(interceptors = { "org.ws.rm.RMStoreCheckInterceptor" })
 public interface WsrmHelloService {

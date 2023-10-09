@@ -5,7 +5,7 @@ import jakarta.jws.WebService;
 
 import org.apache.cxf.feature.Features;
 
-@WebService(portName = "WsrmHelloServicePort", serviceName = "org.ws.rm.WsrmHelloService", targetNamespace = "https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm", endpointInterface = "org.ws.rm.WsrmHelloService")
+@WebService(targetNamespace = "https://quarkiverse.github.io/quarkiverse-docs/quarkus-cxf/test/ws-rm")
 @Features(classes = { RMStoreFeature.class })
 public class WsrmHelloServiceImpl implements WsrmHelloService {
 
