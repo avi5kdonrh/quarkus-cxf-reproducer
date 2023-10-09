@@ -3,6 +3,9 @@ package org.ws.rm;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.xml.ws.BindingProvider;
 import jakarta.xml.ws.Service;
+
+import org.apache.cxf.endpoint.Client;
+import org.apache.cxf.frontend.ClientProxy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -42,6 +45,8 @@ public class WsReliableMessagingTest {
         WsrmHelloService proxy = service.getPort(WsrmHelloService.class, new RMStoreFeature());
         BindingProvider bindingProvider = (BindingProvider) proxy;
         bindingProvider.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,"http://localhost:8081/cxf/WsrmHelloServicePort");
+        Client client = ClientProxy.getClient(proxy);
+        client.getEndpoint().getEndpointInfo().setAddress("http://localhost:8081/cxf/WsrmHelloServicePort");
         final String reply = proxy.sayHello();
         String prefix = "WS-ReliableMessaging Hello World! seqSize: ";
         Assertions.assertThat(reply).startsWith(prefix);
